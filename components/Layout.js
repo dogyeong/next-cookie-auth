@@ -1,22 +1,31 @@
 import Link from 'next/link'
+import { logoutUser } from '../lib/auth'
 
-export default function Layout({ title, children }) {
+export default function Layout({ title, children, auth }) {
+    const { user = {} } = auth || {}
     return (
         <div className="root">
             <nav className="navbar">
-                <span>Welcome, <strong>Guest</strong></span>
+                <span>Welcome, <strong>{user.name || 'Guest'}</strong></span>
 
                 <div>
                     <Link href="/">
                         <a>Home</a>
                     </Link>
-                    <Link href="/profile">
-                        <a>Profile</a>
-                    </Link>
-                    <button>Logout</button>
-                    <Link href="/login">
-                        <a>Login</a>
-                    </Link>
+                    {user.email ? (
+                        // Auth Navigation
+                        <React.Fragment>
+                            <Link href="/profile">
+                                <a>Profile</a>
+                            </Link>
+                            <button onClick={logoutUser}>Logout</button>
+                        </React.Fragment>
+                    ) : (
+                        // unAuth Navigation
+                        <Link href="/login">
+                            <a>Login</a>
+                        </Link>
+                    )}
                 </div>
             </nav>
 

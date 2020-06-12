@@ -44,6 +44,11 @@ app.prepare()
             res.json(userData)
         })
 
+        server.post('/api/logout', async (req, res) => {
+            res.clearCookie('token', COOKIE_OPTIONS)
+            res.sendStatus(204)
+        })
+
         server.get('/api/profile', async (req, res) => {
             const { signedCookies = {} } = req
             const { token } = signedCookies
@@ -52,7 +57,7 @@ app.prepare()
                 const user = data.find(user => user.email === token.email)  
                 return res.json(user)
             }
-            res.statusCode(404)
+            res.sendStatus(404)
         })
 
         server.get('*', (req, res) => {
