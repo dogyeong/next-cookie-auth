@@ -21,7 +21,7 @@ export default function Layout({ title, children, auth }) {
                             <button onClick={logoutUser}>Logout</button>
                         </React.Fragment>
                     ) : (
-                        // unAuth Navigation
+                        // unAuth Navigation 
                         <Link href="/login">
                             <a>Login</a>
                         </Link>
