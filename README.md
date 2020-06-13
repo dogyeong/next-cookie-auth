@@ -6,4 +6,4 @@ https://www.udemy.com/course/universal-react-with-nextjs-the-ultimate-guide/
 
 
 ### Result
-
+https://next-auth-example.herokuapp.com/
